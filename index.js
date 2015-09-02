@@ -33,7 +33,7 @@ module.exports = function (opts, src) {
                 if (this.parent.node[1][1] === 'html' || this.parent.node[1][1] === 'body') {
                     this.parent.node.some(function (leaf, index, array) {
                         if (leaf[0] === 'clazz' || leaf[0] === 'shash' ||
-                            (Array.isArray(leaf) && !!leaf[1].trim() && leaf[1] !== 'html' && leaf[1] !== 'body')) {
+                            (Array.isArray(leaf) && typeof leaf[1] !== 'object' && !!leaf[1].toString().trim() && leaf[1] !== 'html' && leaf[1] !== 'body')) {
                             array.splice(index, 0,
                                 [ 'clazz', [ 'ident', opts.parentClass ] ],
                                 [ 's', ' ' ]
